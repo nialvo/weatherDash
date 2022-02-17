@@ -18,6 +18,7 @@ body{
 #right{
     padding:20px;
     flex-grow:1;
+    visibility:hidden;
 }
 #present{
     

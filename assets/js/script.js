@@ -17,6 +17,7 @@ document.addEventListener('keypress', function (e) {
 })
 
 //HTML elements
+const right = document.getElementById("right");
 const present = document.getElementById("present");
 const futureTitle = document.getElementById("futureTitle");
 const futureCards = document.getElementById("futureCards");
@@ -31,11 +32,9 @@ search.addEventListener("click",getCity);//add search button event listener, thi
 
 //functions
 function getCity(){
-
     //get user's date and timezone offset in minutes
     userDate = new Date();
     userOffsetM = -userDate.getTimezoneOffset();//for some reason this is given as a positive number for hours behind GMT
-
     //get input and continue
     units = document.querySelector('input[name="units"]:checked').value;
     city = enterCity.value;
@@ -125,5 +124,5 @@ function displayWeather(data){
         futureCards.children[tt].children[3].innerHTML="Wind: "+wind+unitArr[1];
         futureCards.children[tt].children[4].innerHTML="Humidity: "+data.daily[tt+1].humidity+"%";
     }
-
+    right.setAttribute("style","visibility:visible");//display info
 }
