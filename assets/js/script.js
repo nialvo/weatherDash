@@ -3,7 +3,7 @@ const key = 'c194ee6c634851dfe532cc172dcda633';//API key
 const imperial = ["&#176F","MPH",];
 const metric = ["&#176C","km/h"]
 //variables (M, S, and H are reminders that the different offsets are given/taken in hours, minutes, or seconds)
-let city, lat, lon, userDate, userOffsetM, cityDate, cityOffsetS, offsetH, units, unitArr, wind;
+let city, lat, lon, userDate, userOffsetM, cityDate, cityOffsetS, offsetH, units, unitArr, wind,flag;
 /* 
 
 */
@@ -16,7 +16,15 @@ document.addEventListener('keypress', function (e) {
     }
 })
 
+//retrieve local storage
+if (localStorage.thePlacesIHaveChecked998856==null){
+    stored = new Array();
+}else{
+    stored = JSON.parse(localStorage.thePlacesIHaveChecked998856);
+}
+
 //HTML elements
+const history = document.getElementById("prevSearches");
 const right = document.getElementById("right");
 const present = document.getElementById("present");
 const futureTitle = document.getElementById("futureTitle");
@@ -24,12 +32,13 @@ const futureCards = document.getElementById("futureCards");
 const enterCity = document.getElementById("enterCity");
 enterCity.value="";
 const search = document.getElementById("search");
-search.addEventListener("click",getCity);//add search button event listener, this triggers the whole process
+search.addEventListener("click",getCity);//add search button event listener
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+displayHistory()
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //functions
 function getCity(){
     //get user's date and timezone offset in minutes
@@ -38,6 +47,18 @@ function getCity(){
     //get input and continue
     units = document.querySelector('input[name="units"]:checked').value;
     city = enterCity.value;
+    cityCoord();
+}
+
+//not the most elegant way to do this but it works
+function getCityFromHistory(e){
+    //get user's date and timezone offset in minutes
+    userDate = new Date();
+    userOffsetM = -userDate.getTimezoneOffset();//for some reason this is given as a positive number for hours behind GMT
+    //get input and continue
+    units = document.querySelector('input[name="units"]:checked').value;
+    city = e.target.value;
+    console.log(city)
     cityCoord();
 }
 
@@ -50,6 +71,17 @@ function cityCoord(){
         lon=data[0].lon;
         //get capitalized place name
         city=data[0].name
+        //check if we have the city in our history list
+        flag=0;
+        for(let c=0;c<stored.length; c++){
+            if(stored[c]==city) flag=1;
+        }
+        //if not then add it
+        if(flag==0){
+            stored.push(city);//add city to history array
+            localStorage.thePlacesIHaveChecked998856=JSON.stringify(stored);//save to local storage
+        }
+        displayHistory();
         getWeather();
     }).catch(function (){
         //else request a different input
@@ -125,4 +157,29 @@ function displayWeather(data){
         futureCards.children[tt].children[4].innerHTML="Humidity: "+data.daily[tt+1].humidity+"%";
     }
     right.setAttribute("style","visibility:visible");//display info
+}
+
+function displayHistory(){
+    history.textContent="";
+    for(let pc =0;pc<stored.length;pc++ ){
+        const hc = document.createElement("button");
+        hc.innerText=stored[pc];
+        hc.value=stored[pc];
+        hc.addEventListener("click",getCityFromHistory);
+        hc.setAttribute("class","prevSearch");
+        history.appendChild(hc);
+    }
+    if(stored.length>0){
+        const er = document.createElement("button");
+        er.innerText="Erase History";
+        er.addEventListener("click",eraseHistory);
+        er.setAttribute("id","erase")
+        history.appendChild(er);
+    }
+}
+
+function eraseHistory(){
+    history.textContent="";
+    stored=[];
+    localStorage.clear();
 }

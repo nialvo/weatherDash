@@ -116,7 +116,11 @@ body{
     background-color:rgb(80,152,230);
     color:white;
 }
-#prevSearch{
+#prevSearches{
+    display:flex;
+    flex-direction:column;
+}
+.prevSearch{
     font-family:'Roboto',sans-serif;
     font-weight:400;
     width:300px;
@@ -127,7 +131,21 @@ body{
     margin-top:10px;
     margin-bottom:10px;
     background-color:rgb(174,174,174);
-    color:black;
+    color:rgb(0, 0, 0);
+}
+#erase{
+    font-family:'Roboto',sans-serif;
+    font-weight:400;
+    width:300px;
+    height:30px;
+    border-radius:5px;
+    text-align:center;
+    font-size:15px;
+    margin-top:10px;
+    margin-bottom:10px;
+    background-color:rgb(223, 13, 13);
+    color:rgb(253, 253, 253);
+
 }
 .presentData{
     margin-top:10px;
@@ -140,3 +158,4 @@ img{
     width:60px;
 
 }
+#erase{}
