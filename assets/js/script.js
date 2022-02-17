@@ -60,7 +60,7 @@ function getCityFromHistory(e){
 }
 
 function cityCoord(){
-    enterCity.value="";
+    
     fetch("https://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=1&appid="+key).then(function (response) {
         return response.json();
     }).then(function (data) {
@@ -79,6 +79,8 @@ function cityCoord(){
             stored.push(city);//add city to history array
             localStorage.thePlacesIHaveChecked998856=JSON.stringify(stored);//save to local storage
         }
+        enterCity.value="";
+        enterCity.placeholder="Enter city name... ";
         displayHistory();
         getWeather();
     }).catch(function (){
