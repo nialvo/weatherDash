@@ -63,6 +63,7 @@ function getCityFromHistory(e){
 }
 
 function cityCoord(){
+    enterCity.value="";
     fetch("https://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=1&appid="+key).then(function (response) {
         return response.json();
     }).then(function (data) {
