@@ -86,6 +86,13 @@ function displayDate(cd){
     return dD;//return cityDate in required format
 }
 
+function increment(cd){
+    let D =new Date();//create new date element
+    D.setTime(cd);//set date using passed cityDate
+    D = D.setHours(D.getHours() + 24);//increment date
+    return D
+}
+
 function displayWeather(data){
     if(units=="metric"){
         unitArr=metric;//set unit array to metric
@@ -106,11 +113,17 @@ function displayWeather(data){
     futureTitle.innerText="5-Day Forecast:";
 
     for(let tt =0; tt<5; tt++){
-        futureCards.children[tt].children[0].innerHTML="prrt";
-        futureCards.children[tt].children[1].innerHTML="prrt";
-        futureCards.children[tt].children[2].innerHTML="prrt";
-        futureCards.children[tt].children[3].innerHTML="prrt";
-        futureCards.children[tt].children[4].innerHTML="prrt";
+        if(units=="metric"){
+            wind=Math.round(data.daily[tt+1].wind_speed*360)/100;//metric wind speed is given by API in m/s, km/h is more intuitive
+        }else{
+            wind=data.daily[tt+1].wind_speed;
+        }
+        cityDate=increment(cityDate);
+        futureCards.children[tt].children[0].innerHTML=displayDate(cityDate);
+        futureCards.children[tt].children[1].innerHTML="<img src='https://openweathermap.org/img/wn/"+data.daily[tt+1].weather[0].icon+"@2x.png'>";
+        futureCards.children[tt].children[2].innerHTML="Temp: "+data.daily[tt+1].temp.day+unitArr[0];
+        futureCards.children[tt].children[3].innerHTML="Wind: "+wind+unitArr[1];
+        futureCards.children[tt].children[4].innerHTML="Humidity: "+data.daily[tt+1].humidity+"%";
     }
 
 }
