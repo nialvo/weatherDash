@@ -43,7 +43,7 @@ function getCity(){
 }
 
 function cityCoord(){
-    fetch("http://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=1&appid="+key).then(function (response) {
+    fetch("https://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit=1&appid="+key).then(function (response) {
         return response.json();
     }).then(function (data) {
         //get coordinates 
@@ -90,7 +90,7 @@ function increment(cd){
     let D =new Date();//create new date element
     D.setTime(cd);//set date using passed cityDate
     D = D.setHours(D.getHours() + 24);//increment date
-    return D
+    return D//return incremented date
 }
 
 function displayWeather(data){
@@ -103,7 +103,7 @@ function displayWeather(data){
     }
     //display current conditions
     present.children[0].innerHTML=city+" "+displayDate(cityDate)+"<img src='https://openweathermap.org/img/wn/"+data.current.weather[0].icon+"@2x.png'>";
-    present.children[1].innerHTML="Temp: "+data.current.temp+unitArr[0];
+    present.children[1].innerHTML="Temp: "+data.current.temp+unitArr[0];//unitArray[0] and [1] are temperature and speed units
     present.children[2].innerHTML="Wind: "+wind+unitArr[1];
     present.children[3].innerHTML="Humidity: "+data.current.humidity+"%";
     let u=parseFloat(data.current.uvi);
@@ -111,17 +111,17 @@ function displayWeather(data){
     present.children[4].innerHTML="UV Index: <span style='border-radius:5px; background-color:"+col+"; color:white; padding-top:5px; padding-bottom:5px; padding-left:10px; padding-right:10px;'>"+u+"</span";
 
     futureTitle.innerText="5-Day Forecast:";
-
+    //display future conditions
     for(let tt =0; tt<5; tt++){
         if(units=="metric"){
             wind=Math.round(data.daily[tt+1].wind_speed*360)/100;//metric wind speed is given by API in m/s, km/h is more intuitive
         }else{
             wind=data.daily[tt+1].wind_speed;
         }
-        cityDate=increment(cityDate);
+        cityDate=increment(cityDate);//get next date
         futureCards.children[tt].children[0].innerHTML=displayDate(cityDate);
         futureCards.children[tt].children[1].innerHTML="<img src='https://openweathermap.org/img/wn/"+data.daily[tt+1].weather[0].icon+"@2x.png'>";
-        futureCards.children[tt].children[2].innerHTML="Temp: "+data.daily[tt+1].temp.day+unitArr[0];
+        futureCards.children[tt].children[2].innerHTML="Temp: "+data.daily[tt+1].temp.day+unitArr[0];//unitArray[0] and [1] are temperature and speed units
         futureCards.children[tt].children[3].innerHTML="Wind: "+wind+unitArr[1];
         futureCards.children[tt].children[4].innerHTML="Humidity: "+data.daily[tt+1].humidity+"%";
     }
