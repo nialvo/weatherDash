@@ -4,9 +4,6 @@ const imperial = ["&#176F","MPH",];
 const metric = ["&#176C","km/h"]
 //variables (M, S, and H are reminders that the different offsets are given/taken in hours, minutes, or seconds)
 let city, lat, lon, userDate, userOffsetM, cityDate, cityOffsetS, offsetH, units, unitArr, wind,flag;
-/* 
-
-*/
 
 //disable enter key function (we use search button only)
 document.addEventListener('keypress', function (e) {
@@ -34,12 +31,13 @@ enterCity.value="";
 const search = document.getElementById("search");
 search.addEventListener("click",getCity);//add search button event listener
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 displayHistory()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //functions
+
 function getCity(){
     //get user's date and timezone offset in minutes
     userDate = new Date();
@@ -58,7 +56,6 @@ function getCityFromHistory(e){
     //get input and continue
     units = document.querySelector('input[name="units"]:checked').value;
     city = e.target.value;
-    console.log(city)
     cityCoord();
 }
 
@@ -99,7 +96,6 @@ function getWeather(){
         cityOffsetS=data.timezone_offset;
         offsetH = (cityOffsetS/60 - userOffsetM)/60;
         cityDate = userDate.setHours(userDate.getHours() + offsetH); 
-        console.log(data);
         displayWeather(data);
     }).catch(function (){
         enterCity.value="";
