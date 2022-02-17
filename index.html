@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+    <title>Weather Dashboard</title>
+
+</head>
+
+<body>
+
+    <div id="header">
+        <div id="title">Weather Dashboard</div>
+    </div>
+    <div id="content">
+        <div id="left">
+            <form>
+                <div class="title2">Search for a City:</div>
+                <input  type="text" placeholder="Enter city name here" id="enterCity">
+            </form>
+            <div id="units">
+                <div>
+                    <input type="radio" id="c" name="units" value="metric">
+                    <label for="c">Celcius</label><br>
+                </div>
+                <div>
+                    <input type="radio" id="f" name="units" value="imperial" checked>
+                    <label for="f">Farenheit</label><br>
+                </div>
+            </div>
+            
+            <button id="search">Search</button>
+            <hr>
+            <div id="prevSearches"></div>
+        </div>
+
+        <div id="right">
+
+            <div id="present">
+                <div class="title2" id="presentTitle"></div>
+                <div  class="presentData"></div>
+                <div  class="presentData"></div>
+                <div  class="presentData"></div>
+                <div  class="presentData"></div>
+            </div>
+
+            <div id="future">
+                <div  id="futureTitle"></div>
+                <div id="futureCards">
+                    <div class="futureCard">
+                        <div class="futureDate"></div>
+                        <div></div>
+                        <div  class="futureData"></div>
+                        <div  class="futureData"></div>
+                        <div  class="futureData"></div>
+                    </div>
+                    <div class="futureCard">
+                        <div class="futureDate"></div>
+                        <div></div>
+                        <div  class="futureData"></div>
+                        <div  class="futureData"></div>
+                        <div  class="futureData"></div>
+                    </div>
+                    <div class="futureCard">
+                        <div class="futureDate"></div>
+                        <div></div>
+                        <div  class="futureData"></div>
+                        <div  class="futureData"></div>
+                        <div  class="futureData"></div>
+                    </div>
+                    <div class="futureCard">
+                        <div class="futureDate"></div>
+                        <div></div>
+                        <div  class="futureData"></div>
+                        <div  class="futureData"></div>
+                        <div  class="futureData"></div>
+                    </div>
+                    <div class="futureCard">
+                        <div class="futureDate"></div>
+                        <div></div>
+                        <div  class="futureData"></div>
+                        <div  class="futureData"></div>
+                        <div  class="futureData"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./assets/js/script.js"></script>
+
+</body>
+
+</html>

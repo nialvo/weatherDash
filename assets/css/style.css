@@ -1,0 +1,141 @@
+body{
+    margin:0;
+    padding:0;
+    font-family:'Roboto',sans-serif;
+    font-size:20px;
+    font-weight:400;
+}
+#header{
+    background-image: linear-gradient(to right, rgb(52,99,188) , rgb(32,9,75));
+}
+#content{
+    display:flex;
+}
+#left{
+    padding-left:10px;
+    
+}
+#right{
+    padding:20px;
+    flex-grow:1;
+}
+#present{
+    
+    border: 2px solid black;
+    padding:10px;
+
+}
+#title{
+    font-family:'Roboto',sans-serif;
+    font-size:50px;
+    font-weight:900;
+    color:white;
+    margin:auto;
+    text-align:center;
+    padding:15px;
+    padding-bottom:25px;
+}
+.title2{
+    font-family:'Roboto',sans-serif;
+    font-size:30px;
+    font-weight:900;
+    color:black;
+    padding-top:10px;
+    padding-bottom:10px;
+    display:flex;
+    align-items:center;
+
+}
+#futureTitle{
+    font-family:'Roboto',sans-serif;
+    font-size:20px;
+    font-weight:900;
+    color:black;
+    padding-top:10px;
+    padding-bottom:10px;
+
+}
+#futureCards{
+    display:flex;
+    justify-content:space-between;
+}
+.futureCard{
+    background-color:rgb(45,62,80);
+    padding:10px;
+    width:17%;
+    
+    
+}
+.futureDate{
+    font-family:'Roboto',sans-serif;
+    font-size:20px;
+    font-weight:900;
+    color:white;
+    padding-top:10px;
+    padding-bottom:10px;
+
+}
+.futureData{
+    font-family:'Roboto',sans-serif;
+    font-size:15px;
+    font-weight:400;
+    color:white;
+    padding-top:10px;
+    padding-bottom:10px;
+
+}
+#enterCity{
+    font-family:'Roboto',sans-serif;
+    font-weight:400;
+    width:300px;
+    height:40px;
+    margin:0;
+    padding:0;
+    border-radius:5px;
+    font-size:20px;
+}
+#units{
+    padding-top:10px;
+    font-family:'Roboto',sans-serif;
+    font-weight:400;
+    font-size:15px;
+    display:flex;
+    justify-content:space-evenly;
+}
+#search{
+    font-family:'Roboto',sans-serif;
+    font-weight:400;
+    width:300px;
+    height:30px;
+    border-radius:5px;
+    text-align:center;
+    font-size:15px;
+    margin-top:10px;
+    margin-bottom:10px;
+    background-color:rgb(80,152,230);
+    color:white;
+}
+#prevSearch{
+    font-family:'Roboto',sans-serif;
+    font-weight:400;
+    width:300px;
+    height:30px;
+    border-radius:5px;
+    text-align:center;
+    font-size:15px;
+    margin-top:10px;
+    margin-bottom:10px;
+    background-color:rgb(174,174,174);
+    color:black;
+}
+.presentData{
+    margin-top:10px;
+    margin-bottom:10px;
+
+}
+img{
+    
+    height:60px;
+    width:60px;
+
+}
